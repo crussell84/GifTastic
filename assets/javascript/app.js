@@ -33,7 +33,18 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             console.log(response);
-
+            var results = response.data;
+            for (var i = 0; i < results.length; i++) {
+                var toonDiv = $("<div>");
+                var p = $("<p>").text("Rating: " + results[i].rating);
+                console.log(p);
+                var toonImage = $("<img>");
+                toonImage.attr("src", results[i].images.fixed_height.url);
+                console.log(toonImage);
+                toonImage.append(p);
+                toonDiv.append(toonImage);
+                $(".gifs-appear-here").append(toonDiv);
+              }
         });
     }
 
