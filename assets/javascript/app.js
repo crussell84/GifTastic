@@ -26,7 +26,7 @@ $(document).ready(function () {
 
     function runSearch() {
         var toon = $(this).attr("data-name");
-        url = url+toon;
+        url = url + toon;
 
         $.ajax({
             url: url,
@@ -37,13 +37,17 @@ $(document).ready(function () {
             for (var i = 0; i < results.length; i++) {
                 var toonDiv = $("<div>");
                 var p = $("<p>").text("Rating: " + results[i].rating);
-                console.log(p);
                 var toonImage = $("<img>");
-                toonImage.attr("src", results[i].images.fixed_height.url);
+                toonImage.attr({
+                    "src": results[i].images.fixed_height_still.url,
+                    "data-still": results[i].images.fixed_height_still.url,
+                    "data-animate": results[i].images.fixed_height.url,
+                    "data-state": "still"
+                });
                 toonDiv.append(p);
                 toonDiv.append(toonImage);
                 $(".gifs-appear-here").append(toonDiv);
-              }
+            }
         });
     }
 
