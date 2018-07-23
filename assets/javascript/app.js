@@ -40,8 +40,7 @@ $(document).ready(function () {
                 console.log(p);
                 var toonImage = $("<img>");
                 toonImage.attr("src", results[i].images.fixed_height.url);
-                console.log(toonImage);
-                toonImage.append(p);
+                toonDiv.append(p);
                 toonDiv.append(toonImage);
                 $(".gifs-appear-here").append(toonDiv);
               }
