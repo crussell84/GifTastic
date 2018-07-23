@@ -1,6 +1,8 @@
 $(document).ready(function () {
     var toons = ["Bugs Bunny", "Elmer Fudd", "Tweety"];
     var $searchButtons = $("div.search-buttons");
+    var $addToon = $("#add-toon");
+    var url = "http://api.giphy.com/v1/gifs/search?api_key=nKAMR4x2vLiOe2HJePFzIVnGfsAeFokB&limit=10&q="
 
     function renderButtons() {
         $searchButtons.empty();
@@ -22,19 +24,27 @@ $(document).ready(function () {
         }
     }
 
-    $("#add-toon").on("click", function (event) {
+    function runSearch() {
+        var toon = $(this).attr("data-name");
+        url = url+toon;
+
+        $.ajax({
+            url: url,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+
+        });
+    }
+
+    $addToon.on("click", function (event) {
         event.preventDefault();
         var toon = $("#toon-input").val().trim();
         toons.push(toon);
         renderButtons();
     });
 
-    $.ajax({
-        url: "http://api.giphy.com/v1/gifs/search?api_key=nKAMR4x2vLiOe2HJePFzIVnGfsAeFokB&q=looney+toons&limit=1",
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-    });
+    $(document).on("click", ".toon", runSearch);
 
     renderButtons();
 
