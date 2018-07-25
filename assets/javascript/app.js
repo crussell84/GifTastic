@@ -14,7 +14,7 @@ $(document).ready(function () {
             // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
             var a = $("<button>");
             // Adding a class
-            a.addClass("toon");
+            a.addClass("toon m-1 btn btn-outline-dark");
             // Adding a data-attribute with a value of the movie at index i
             a.attr("data-name", toons[i]);
             // Providing the button's text with a value of the movie at index i
