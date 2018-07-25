@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var toons = ["Bugs Bunny", "Elmer Fudd", "Tweety"];
+    var toons = ["Bugs Bunny", "Elmer Fudd", "Tweety", "Marvin the Martian", "Daffy Duck", "Wile E. Coyote"];
     var $searchButtons = $("div.search-buttons");
     var $addToon = $("#add-toon");
     var $gifDisplay = $(".gifs-appear-here");
@@ -14,7 +14,7 @@ $(document).ready(function () {
             // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
             var a = $("<button>");
             // Adding a class
-            a.addClass("toon m-1 btn btn-outline-dark");
+            a.addClass("toon m-1 btn btn-dark");
             // Adding a data-attribute with a value of the movie at index i
             a.attr("data-name", toons[i]);
             // Providing the button's text with a value of the movie at index i
@@ -42,7 +42,7 @@ $(document).ready(function () {
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
                 var $toonDiv = $("<div>");
-                $toonDiv.addClass("col-m-4 border m-2");
+                $toonDiv.addClass("col-m-4 border m-2 bg-light");
                 var $p = $("<p>").text("Rating: " + results[i].rating).addClass("text-center font-weight-bold m-2");
                 var $toonImage = $("<img>");
                 $toonImage.attr({
@@ -75,6 +75,7 @@ $(document).ready(function () {
         var toon = $("#toon-input").val().trim();
         toons.push(toon);
         renderButtons();
+        document.getElementById("toon-form").reset();
     });
 
     $searchButtons.on("click", ".toon", runSearch);
