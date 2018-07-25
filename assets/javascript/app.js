@@ -2,7 +2,7 @@ $(document).ready(function () {
     var toons = ["Bugs Bunny", "Elmer Fudd", "Tweety"];
     var $searchButtons = $("div.search-buttons");
     var $addToon = $("#add-toon");
-    var url = "http://api.giphy.com/v1/gifs/search?api_key=nKAMR4x2vLiOe2HJePFzIVnGfsAeFokB&limit=10&q="
+    var $gifDisplay = $(".gifs-appear-here");
 
     function renderButtons() {
         $searchButtons.empty();
@@ -23,8 +23,14 @@ $(document).ready(function () {
             $searchButtons.append(a);
         }
     }
+    function resetDisplay(){
+        $gifDisplay.empty();
+    }
 
     function runSearch() {
+        //reset the display & url before running search
+        resetDisplay();
+        var url = "http://api.giphy.com/v1/gifs/search?api_key=nKAMR4x2vLiOe2HJePFzIVnGfsAeFokB&limit=10&rating=pg-13&q="
         var toon = $(this).attr("data-name");
         url = url + toon;
 
@@ -46,9 +52,20 @@ $(document).ready(function () {
                 });
                 toonDiv.append(p);
                 toonDiv.append(toonImage);
-                $(".gifs-appear-here").append(toonDiv);
+                $gifDisplay.append(toonDiv);
             }
         });
+    }
+
+    function playPauseGIF() {
+        var state = $(this).attr("data-state");
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
     }
 
     $addToon.on("click", function (event) {
@@ -58,7 +75,8 @@ $(document).ready(function () {
         renderButtons();
     });
 
-    $(document).on("click", ".toon", runSearch);
+    $searchButtons.on("click", ".toon", runSearch);
+    $gifDisplay.on("click", "img", playPauseGIF);
 
     renderButtons();
 
