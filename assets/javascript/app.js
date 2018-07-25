@@ -30,7 +30,7 @@ $(document).ready(function () {
     function runSearch() {
         //reset the display & url before running search
         resetDisplay();
-        var url = "http://api.giphy.com/v1/gifs/search?api_key=nKAMR4x2vLiOe2HJePFzIVnGfsAeFokB&limit=10&rating=pg-13&q="
+        var url = "https://api.giphy.com/v1/gifs/search?api_key=nKAMR4x2vLiOe2HJePFzIVnGfsAeFokB&limit=10&rating=pg-13&q="
         var toon = $(this).attr("data-name");
         url = url + toon;
 
