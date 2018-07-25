@@ -41,18 +41,20 @@ $(document).ready(function () {
             console.log(response);
             var results = response.data;
             for (var i = 0; i < results.length; i++) {
-                var toonDiv = $("<div>");
-                var p = $("<p>").text("Rating: " + results[i].rating);
-                var toonImage = $("<img>");
-                toonImage.attr({
+                var $toonDiv = $("<div>");
+                $toonDiv.addClass("col-m-4 border m-2");
+                var $p = $("<p>").text("Rating: " + results[i].rating).addClass("text-center font-weight-bold m-2");
+                var $toonImage = $("<img>");
+                $toonImage.attr({
                     "src": results[i].images.fixed_height_still.url,
                     "data-still": results[i].images.fixed_height_still.url,
                     "data-animate": results[i].images.fixed_height.url,
-                    "data-state": "still"
+                    "data-state": "still",
+                    "class": "rounded m-2"
                 });
-                toonDiv.append(p);
-                toonDiv.append(toonImage);
-                $gifDisplay.append(toonDiv);
+                $toonDiv.append($p);
+                $toonDiv.append($toonImage);
+                $gifDisplay.append($toonDiv);
             }
         });
     }
