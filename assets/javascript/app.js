@@ -7,19 +7,12 @@ $(document).ready(function () {
     function renderButtons() {
         $searchButtons.empty();
 
-        // Looping through the array of movies
+        
         for (var i = 0; i < toons.length; i++) {
-
-            // Then dynamicaly generating buttons for each movie in the array.
-            // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
             var a = $("<button>");
-            // Adding a class
             a.addClass("toon m-1 btn btn-dark");
-            // Adding a data-attribute with a value of the movie at index i
             a.attr("data-name", toons[i]);
-            // Providing the button's text with a value of the movie at index i
             a.text(toons[i]);
-            // Adding the button to the HTML
             $searchButtons.append(a);
         }
     }
@@ -73,7 +66,8 @@ $(document).ready(function () {
     $addToon.on("click", function (event) {
         event.preventDefault();
         var toon = $("#toon-input").val().trim();
-        toons.push(toon);
+        if (!toons.includes(toon) && (toon)){
+        toons.push(toon);}
         renderButtons();
         document.getElementById("toon-form").reset();
     });
