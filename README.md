@@ -9,4 +9,4 @@ This is a simple page that hooks into the Giphy API to search for and display GI
 
 ## To View Live
 
- - Go to: https://crussell84.github.io/GifTastic/
+ - Go to: https://www.startwithaskateboard.com/GifTastic/
